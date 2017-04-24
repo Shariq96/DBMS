@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjectdbModel3" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="class">
+    <Key>
+      <PropertyRef Name="class_id" />
+    </Key>
+    <Property Name="class_id" Type="Int32" Nullable="false" />
+    <Property Name="course_id" Type="Int32" Nullable="false" />
+    <Property Name="t_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="class_exam" Relationship="Self.FK_class_exam_class" FromRole="class" ToRole="class_exam" />
+    <NavigationProperty Name="std_class" Relationship="Self.FK_std_class_class" FromRole="class" ToRole="std_class" />
+  </EntityType>
+  <EntityType Name="class_exam">
+    <Key>
+      <PropertyRef Name="class_id" />
+      <PropertyRef Name="exam_id" />
+    </Key>
+    <Property Name="class_id" Type="Int32" Nullable="false" />
+    <Property Name="exam_id" Type="Int32" Nullable="false" />
+    <Property Name="exam_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="max_marks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="grade_id" Type="Int32" />
+    <NavigationProperty Name="class" Relationship="Self.FK_class_exam_class" FromRole="class_exam" ToRole="class" />
+    <NavigationProperty Name="exam" Relationship="Self.FK_class_exam_exam" FromRole="class_exam" ToRole="exam" />
+  </EntityType>
+  <EntityType Name="exam">
+    <Key>
+      <PropertyRef Name="exam_id" />
+    </Key>
+    <Property Name="exam_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="min_marks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="max_marks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="exam_title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="class_exam" Relationship="Self.FK_class_exam_exam" FromRole="exam" ToRole="class_exam" />
+  </EntityType>
+  <EntityType Name="exam_result">
+    <Key>
+      <PropertyRef Name="class_id" />
+      <PropertyRef Name="std_id" />
+      <PropertyRef Name="exam_id" />
+    </Key>
+    <Property Name="class_id" Type="Int32" Nullable="false" />
+    <Property Name="std_id" Type="Int32" Nullable="false" />
+    <Property Name="exam_id" Type="Int32" Nullable="false" />
+    <Property Name="marks_obt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="grade_id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="grade">
+    <Key>
+      <PropertyRef Name="grade_id" />
+    </Key>
+    <Property Name="grade_id" Type="Int32" Nullable="false" />
+    <Property Name="min_marks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="max_marks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GPA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="std_class">
+    <Key>
+      <PropertyRef Name="std_id" />
+      <PropertyRef Name="class_id" />
+    </Key>
+    <Property Name="std_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="class_id" Type="Int32" Nullable="false" />
+    <Property Name="reg_date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="class" Relationship="Self.FK_std_class_class" FromRole="std_class" ToRole="class" />
+    <NavigationProperty Name="std_infor" Relationship="Self.FK_std_class_std_infor" FromRole="std_class" ToRole="std_infor" />
+  </EntityType>
+  <EntityType Name="std_infor">
+    <Key>
+      <PropertyRef Name="std_id" />
+    </Key>
+    <Property Name="std_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="std_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="std_fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="std_dob" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="std_class" Relationship="Self.FK_std_class_std_infor" FromRole="std_infor" ToRole="std_class" />
+  </EntityType>
+  <Association Name="FK_class_exam_class">
+    <End Role="class" Type="Self.class" Multiplicity="1" />
+    <End Role="class_exam" Type="Self.class_exam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="class">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="class_exam">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_std_class_class">
+    <End Role="class" Type="Self.class" Multiplicity="1" />
+    <End Role="std_class" Type="Self.std_class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="class">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="std_class">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_class_exam_exam">
+    <End Role="exam" Type="Self.exam" Multiplicity="1" />
+    <End Role="class_exam" Type="Self.class_exam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="exam">
+        <PropertyRef Name="exam_id" />
+      </Principal>
+      <Dependent Role="class_exam">
+        <PropertyRef Name="exam_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_std_class_std_infor">
+    <End Role="std_infor" Type="Self.std_infor" Multiplicity="1" />
+    <End Role="std_class" Type="Self.std_class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="std_infor">
+        <PropertyRef Name="std_id" />
+      </Principal>
+      <Dependent Role="std_class">
+        <PropertyRef Name="std_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProjectdbEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="classes" EntityType="Self.class" />
+    <EntitySet Name="class_exam" EntityType="Self.class_exam" />
+    <EntitySet Name="exams" EntityType="Self.exam" />
+    <EntitySet Name="exam_result" EntityType="Self.exam_result" />
+    <EntitySet Name="grades" EntityType="Self.grade" />
+    <EntitySet Name="std_class" EntityType="Self.std_class" />
+    <EntitySet Name="std_infor" EntityType="Self.std_infor" />
+    <AssociationSet Name="FK_class_exam_class" Association="Self.FK_class_exam_class">
+      <End Role="class" EntitySet="classes" />
+      <End Role="class_exam" EntitySet="class_exam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_std_class_class" Association="Self.FK_std_class_class">
+      <End Role="class" EntitySet="classes" />
+      <End Role="std_class" EntitySet="std_class" />
+    </AssociationSet>
+    <AssociationSet Name="FK_class_exam_exam" Association="Self.FK_class_exam_exam">
+      <End Role="exam" EntitySet="exams" />
+      <End Role="class_exam" EntitySet="class_exam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_std_class_std_infor" Association="Self.FK_std_class_std_infor">
+      <End Role="std_infor" EntitySet="std_infor" />
+      <End Role="std_class" EntitySet="std_class" />
+    </AssociationSet>
+    <FunctionImport Name="showresut" ReturnType="Collection(ProjectdbModel3.showresut_Result)">
+      <Parameter Name="std_id" Mode="In" Type="Int32" />
+      <Parameter Name="class_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="showresut_Result">
+    <Property Type="Int32" Name="std_id" Nullable="false" />
+    <Property Type="String" Name="std_name" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="class_id" Nullable="false" />
+    <Property Type="String" Name="exam_title" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="marks_obt" Nullable="false" MaxLength="50" />
+  </ComplexType>
+</Schema>

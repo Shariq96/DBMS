@@ -1,0 +1,72 @@
+﻿@model WebApplication8.Models.adduserModel
+
+@{
+    ViewBag.Title = "add";
+
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div style="padding:0px 50px; margin-top:-50px;">
+        <h2>WELCOME Student</h2>
+        <h1>@Session["username"]</h1>
+        <div class="form-horizontal">
+
+
+            <h4>TEACHER PANNEL</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.id)
+
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10" style="margin:20px 350px 0px 350px">
+                    
+                       @Html.ActionLink("Update Info", "update", null, new { @class = "button", style = "width:200px" })
+                        
+                    
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10" style="margin:20px 350px 0px 350px">
+                 
+                        @Html.ActionLink("View Info", "stdview", null, new { @class = "button", style = "width:200px" })
+                      
+                    
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10" style="margin:20px 350px 0px 350px">
+                    
+                        @Html.ActionLink("View Result", "show_result",null, new { @class = "button", style = "width:450px" })
+                       
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10" style="margin:-110px 600px 0px 600px;">
+               
+                       @Html.ActionLink("Add Student Marks", "add_result", null, new { @class = "button", style = "width:200px" })
+                        
+                 
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10" style="margin:-110px 600px 0px 600px;">
+                   
+                        @Html.ActionLink("Update Marks", "upd_result", null, new { @class = "button", style = "width:200px" })
+                    
+                </div>
+            </div>
+            
+
+        </div>
+
+    </div>
+
+}

@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjectdbModel3.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="class">
+    <Key>
+      <PropertyRef Name="class_id" />
+    </Key>
+    <Property Name="class_id" Type="int" Nullable="false" />
+    <Property Name="course_id" Type="int" Nullable="false" />
+    <Property Name="t_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="class_exam">
+    <Key>
+      <PropertyRef Name="class_id" />
+      <PropertyRef Name="exam_id" />
+    </Key>
+    <Property Name="class_id" Type="int" Nullable="false" />
+    <Property Name="exam_id" Type="int" Nullable="false" />
+    <Property Name="exam_date" Type="date" Nullable="false" />
+    <Property Name="max_marks" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="grade_id" Type="int" />
+  </EntityType>
+  <EntityType Name="exam">
+    <Key>
+      <PropertyRef Name="exam_id" />
+    </Key>
+    <Property Name="exam_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="min_marks" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="max_marks" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="exam_title" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="exam_result">
+    <Key>
+      <PropertyRef Name="class_id" />
+      <PropertyRef Name="std_id" />
+      <PropertyRef Name="exam_id" />
+    </Key>
+    <Property Name="class_id" Type="int" Nullable="false" />
+    <Property Name="std_id" Type="int" Nullable="false" />
+    <Property Name="exam_id" Type="int" Nullable="false" />
+    <Property Name="marks_obt" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="grade_id" Type="int" />
+  </EntityType>
+  <EntityType Name="grade">
+    <Key>
+      <PropertyRef Name="grade_id" />
+    </Key>
+    <Property Name="grade_id" Type="int" Nullable="false" />
+    <Property Name="min_marks" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="max_marks" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="GPA" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="std_class">
+    <Key>
+      <PropertyRef Name="std_id" />
+      <PropertyRef Name="class_id" />
+    </Key>
+    <Property Name="std_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="class_id" Type="int" Nullable="false" />
+    <Property Name="reg_date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="std_infor">
+    <Key>
+      <PropertyRef Name="std_id" />
+    </Key>
+    <Property Name="std_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="std_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="std_fname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="std_dob" Type="date" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="gender" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_class_exam_class">
+    <End Role="class" Type="Self.class" Multiplicity="1" />
+    <End Role="class_exam" Type="Self.class_exam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="class">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="class_exam">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_class_exam_exam">
+    <End Role="exam" Type="Self.exam" Multiplicity="1" />
+    <End Role="class_exam" Type="Self.class_exam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="exam">
+        <PropertyRef Name="exam_id" />
+      </Principal>
+      <Dependent Role="class_exam">
+        <PropertyRef Name="exam_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_std_class_class">
+    <End Role="class" Type="Self.class" Multiplicity="1" />
+    <End Role="std_class" Type="Self.std_class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="class">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="std_class">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_std_class_std_infor">
+    <End Role="std_infor" Type="Self.std_infor" Multiplicity="1" />
+    <End Role="std_class" Type="Self.std_class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="std_infor">
+        <PropertyRef Name="std_id" />
+      </Principal>
+      <Dependent Role="std_class">
+        <PropertyRef Name="std_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="showresut" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="std_id" Type="int" Mode="In" />
+    <Parameter Name="class_id" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="ProjectdbModel3StoreContainer">
+    <EntitySet Name="class" EntityType="Self.class" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="class_exam" EntityType="Self.class_exam" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="exam" EntityType="Self.exam" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="exam_result" EntityType="Self.exam_result" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="grade" EntityType="Self.grade" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="std_class" EntityType="Self.std_class" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="std_infor" EntityType="Self.std_infor" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_class_exam_class" Association="Self.FK_class_exam_class">
+      <End Role="class" EntitySet="class" />
+      <End Role="class_exam" EntitySet="class_exam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_class_exam_exam" Association="Self.FK_class_exam_exam">
+      <End Role="exam" EntitySet="exam" />
+      <End Role="class_exam" EntitySet="class_exam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_std_class_class" Association="Self.FK_std_class_class">
+      <End Role="class" EntitySet="class" />
+      <End Role="std_class" EntitySet="std_class" />
+    </AssociationSet>
+    <AssociationSet Name="FK_std_class_std_infor" Association="Self.FK_std_class_std_infor">
+      <End Role="std_infor" EntitySet="std_infor" />
+      <End Role="std_class" EntitySet="std_class" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

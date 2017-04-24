@@ -1,0 +1,454 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjectdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="attendance">
+    <Key>
+      <PropertyRef Name="att_date" />
+      <PropertyRef Name="class_id" />
+      <PropertyRef Name="std_id" />
+    </Key>
+    <Property Name="att_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="class_id" Type="Int32" Nullable="false" />
+    <Property Name="std_id" Type="Int32" Nullable="false" />
+    <Property Name="att_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="class" Relationship="Self.FK_attendance_class" FromRole="attendance" ToRole="class" />
+    <NavigationProperty Name="class1" Relationship="Self.FK_attendance_class1" FromRole="attendance" ToRole="class" />
+    <NavigationProperty Name="std_infor" Relationship="Self.FK_attendance_std_infor" FromRole="attendance" ToRole="std_infor" />
+  </EntityType>
+  <EntityType Name="class">
+    <Key>
+      <PropertyRef Name="class_id" />
+    </Key>
+    <Property Name="class_id" Type="Int32" Nullable="false" />
+    <Property Name="course_id" Type="Int32" Nullable="false" />
+    <Property Name="t_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="attendances" Relationship="Self.FK_attendance_class" FromRole="class" ToRole="attendance" />
+    <NavigationProperty Name="attendances1" Relationship="Self.FK_attendance_class1" FromRole="class" ToRole="attendance" />
+    <NavigationProperty Name="course" Relationship="Self.FK_class_course" FromRole="class" ToRole="course" />
+    <NavigationProperty Name="class_exam" Relationship="Self.FK_class_exam_class" FromRole="class" ToRole="class_exam" />
+    <NavigationProperty Name="faculty" Relationship="Self.FK_class_faculty" FromRole="class" ToRole="faculty" />
+    <NavigationProperty Name="std_class" Relationship="Self.FK_std_class_class" FromRole="class" ToRole="std_class" />
+  </EntityType>
+  <EntityType Name="class_exam">
+    <Key>
+      <PropertyRef Name="class_id" />
+      <PropertyRef Name="exam_id" />
+    </Key>
+    <Property Name="class_id" Type="Int32" Nullable="false" />
+    <Property Name="exam_id" Type="Int32" Nullable="false" />
+    <Property Name="exam_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="max_marks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="grade_id" Type="Int32" />
+    <NavigationProperty Name="class" Relationship="Self.FK_class_exam_class" FromRole="class_exam" ToRole="class" />
+    <NavigationProperty Name="exam" Relationship="Self.FK_class_exam_exam" FromRole="class_exam" ToRole="exam" />
+  </EntityType>
+  <EntityType Name="course">
+    <Key>
+      <PropertyRef Name="course_id" />
+    </Key>
+    <Property Name="course_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="course_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="course_crh" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="classes" Relationship="Self.FK_class_course" FromRole="course" ToRole="class" />
+  </EntityType>
+  <EntityType Name="exam">
+    <Key>
+      <PropertyRef Name="exam_id" />
+    </Key>
+    <Property Name="exam_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="min_marks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="max_marks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="exam_title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="class_exam" Relationship="Self.FK_class_exam_exam" FromRole="exam" ToRole="class_exam" />
+  </EntityType>
+  <EntityType Name="exam_result">
+    <Key>
+      <PropertyRef Name="class_id" />
+      <PropertyRef Name="std_id" />
+      <PropertyRef Name="exam_id" />
+    </Key>
+    <Property Name="class_id" Type="Int32" Nullable="false" />
+    <Property Name="std_id" Type="Int32" Nullable="false" />
+    <Property Name="exam_id" Type="Int32" Nullable="false" />
+    <Property Name="marks_obt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="grade_id" Type="Int32" />
+    <NavigationProperty Name="std_infor" Relationship="Self.FK_exam_result_std_infor" FromRole="exam_result" ToRole="std_infor" />
+  </EntityType>
+  <EntityType Name="facontact">
+    <Key>
+      <PropertyRef Name="t_id" />
+    </Key>
+    <Property Name="t_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="t_contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="faculty" Relationship="Self.FK_faculty_facontact" FromRole="facontact" ToRole="faculty" />
+  </EntityType>
+  <EntityType Name="faculty">
+    <Key>
+      <PropertyRef Name="t_id" />
+    </Key>
+    <Property Name="t_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="t_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="t_fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="classes" Relationship="Self.FK_class_faculty" FromRole="faculty" ToRole="class" />
+    <NavigationProperty Name="facontact" Relationship="Self.FK_faculty_facontact" FromRole="faculty" ToRole="facontact" />
+  </EntityType>
+  <EntityType Name="grade">
+    <Key>
+      <PropertyRef Name="grade_id" />
+    </Key>
+    <Property Name="grade_id" Type="Int32" Nullable="false" />
+    <Property Name="min_marks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="max_marks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GPA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="std_addr">
+    <Key>
+      <PropertyRef Name="std_id" />
+    </Key>
+    <Property Name="std_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="addr_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="addr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="std_infor" Relationship="Self.FK_std_addr_std_infor" FromRole="std_addr" ToRole="std_infor" />
+  </EntityType>
+  <EntityType Name="std_class">
+    <Key>
+      <PropertyRef Name="std_id" />
+      <PropertyRef Name="class_id" />
+    </Key>
+    <Property Name="std_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="class_id" Type="Int32" Nullable="false" />
+    <Property Name="reg_date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="class" Relationship="Self.FK_std_class_class" FromRole="std_class" ToRole="class" />
+    <NavigationProperty Name="std_infor" Relationship="Self.FK_std_class_std_infor" FromRole="std_class" ToRole="std_infor" />
+  </EntityType>
+  <EntityType Name="std_contact">
+    <Key>
+      <PropertyRef Name="std_id" />
+    </Key>
+    <Property Name="std_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="std_contact1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="std_fcontact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="std_infor" Relationship="Self.FK_std_contact_std_infor" FromRole="std_contact" ToRole="std_infor" />
+  </EntityType>
+  <EntityType Name="std_infor">
+    <Key>
+      <PropertyRef Name="std_id" />
+    </Key>
+    <Property Name="std_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="std_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="std_fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="std_dob" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="attendances" Relationship="Self.FK_attendance_std_infor" FromRole="std_infor" ToRole="attendance" />
+    <NavigationProperty Name="exam_result" Relationship="Self.FK_exam_result_std_infor" FromRole="std_infor" ToRole="exam_result" />
+    <NavigationProperty Name="std_addr" Relationship="Self.FK_std_addr_std_infor" FromRole="std_infor" ToRole="std_addr" />
+    <NavigationProperty Name="std_class" Relationship="Self.FK_std_class_std_infor" FromRole="std_infor" ToRole="std_class" />
+    <NavigationProperty Name="std_contact" Relationship="Self.FK_std_contact_std_infor" FromRole="std_infor" ToRole="std_contact" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="username" />
+      <PropertyRef Name="pass" />
+    </Key>
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StudentResult">
+    <Key>
+      <PropertyRef Name="std_name" />
+      <PropertyRef Name="std_id" />
+      <PropertyRef Name="exam_id" />
+      <PropertyRef Name="class_id" />
+      <PropertyRef Name="marks_obt" />
+      <PropertyRef Name="course_name" />
+      <PropertyRef Name="reg_date" />
+      <PropertyRef Name="att_date" />
+      <PropertyRef Name="att_status" />
+    </Key>
+    <Property Name="std_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="std_id" Type="Int32" Nullable="false" />
+    <Property Name="exam_id" Type="Int32" Nullable="false" />
+    <Property Name="class_id" Type="Int32" Nullable="false" />
+    <Property Name="marks_obt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="course_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="reg_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="att_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="att_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="View_1">
+    <Key>
+      <PropertyRef Name="course_name" />
+      <PropertyRef Name="max_marks" />
+    </Key>
+    <Property Name="course_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="max_marks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="View_2">
+    <Key>
+      <PropertyRef Name="std_id" />
+      <PropertyRef Name="std_name" />
+      <PropertyRef Name="class_id" />
+      <PropertyRef Name="att_date" />
+      <PropertyRef Name="att_status" />
+    </Key>
+    <Property Name="std_id" Type="Int32" Nullable="false" />
+    <Property Name="std_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="class_id" Type="Int32" Nullable="false" />
+    <Property Name="att_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="att_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_attendance_class">
+    <End Role="class" Type="Self.class" Multiplicity="1" />
+    <End Role="attendance" Type="Self.attendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="class">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="attendance">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_attendance_class1">
+    <End Role="class" Type="Self.class" Multiplicity="1" />
+    <End Role="attendance" Type="Self.attendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="class">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="attendance">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_attendance_std_infor">
+    <End Role="std_infor" Type="Self.std_infor" Multiplicity="1" />
+    <End Role="attendance" Type="Self.attendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="std_infor">
+        <PropertyRef Name="std_id" />
+      </Principal>
+      <Dependent Role="attendance">
+        <PropertyRef Name="std_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_class_course">
+    <End Role="course" Type="Self.course" Multiplicity="1" />
+    <End Role="class" Type="Self.class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course">
+        <PropertyRef Name="course_id" />
+      </Principal>
+      <Dependent Role="class">
+        <PropertyRef Name="course_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_class_exam_class">
+    <End Role="class" Type="Self.class" Multiplicity="1" />
+    <End Role="class_exam" Type="Self.class_exam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="class">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="class_exam">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_class_faculty">
+    <End Role="faculty" Type="Self.faculty" Multiplicity="1" />
+    <End Role="class" Type="Self.class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="faculty">
+        <PropertyRef Name="t_id" />
+      </Principal>
+      <Dependent Role="class">
+        <PropertyRef Name="t_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_std_class_class">
+    <End Role="class" Type="Self.class" Multiplicity="1" />
+    <End Role="std_class" Type="Self.std_class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="class">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="std_class">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_class_exam_exam">
+    <End Role="exam" Type="Self.exam" Multiplicity="1" />
+    <End Role="class_exam" Type="Self.class_exam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="exam">
+        <PropertyRef Name="exam_id" />
+      </Principal>
+      <Dependent Role="class_exam">
+        <PropertyRef Name="exam_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_exam_result_std_infor">
+    <End Role="std_infor" Type="Self.std_infor" Multiplicity="1" />
+    <End Role="exam_result" Type="Self.exam_result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="std_infor">
+        <PropertyRef Name="std_id" />
+      </Principal>
+      <Dependent Role="exam_result">
+        <PropertyRef Name="std_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_faculty_facontact">
+    <End Role="facontact" Type="Self.facontact" Multiplicity="1" />
+    <End Role="faculty" Type="Self.faculty" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="facontact">
+        <PropertyRef Name="t_id" />
+      </Principal>
+      <Dependent Role="faculty">
+        <PropertyRef Name="t_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_std_addr_std_infor">
+    <End Role="std_infor" Type="Self.std_infor" Multiplicity="1" />
+    <End Role="std_addr" Type="Self.std_addr" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="std_infor">
+        <PropertyRef Name="std_id" />
+      </Principal>
+      <Dependent Role="std_addr">
+        <PropertyRef Name="std_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_std_class_std_infor">
+    <End Role="std_infor" Type="Self.std_infor" Multiplicity="1" />
+    <End Role="std_class" Type="Self.std_class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="std_infor">
+        <PropertyRef Name="std_id" />
+      </Principal>
+      <Dependent Role="std_class">
+        <PropertyRef Name="std_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_std_contact_std_infor">
+    <End Role="std_infor" Type="Self.std_infor" Multiplicity="1" />
+    <End Role="std_contact" Type="Self.std_contact" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="std_infor">
+        <PropertyRef Name="std_id" />
+      </Principal>
+      <Dependent Role="std_contact">
+        <PropertyRef Name="std_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="resultEntity" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="attendances" EntityType="Self.attendance" />
+    <EntitySet Name="classes" EntityType="Self.class" />
+    <EntitySet Name="class_exam" EntityType="Self.class_exam" />
+    <EntitySet Name="courses" EntityType="Self.course" />
+    <EntitySet Name="exams" EntityType="Self.exam" />
+    <EntitySet Name="exam_result" EntityType="Self.exam_result" />
+    <EntitySet Name="facontacts" EntityType="Self.facontact" />
+    <EntitySet Name="faculties" EntityType="Self.faculty" />
+    <EntitySet Name="grades" EntityType="Self.grade" />
+    <EntitySet Name="std_addr" EntityType="Self.std_addr" />
+    <EntitySet Name="std_class" EntityType="Self.std_class" />
+    <EntitySet Name="std_contact" EntityType="Self.std_contact" />
+    <EntitySet Name="std_infor" EntityType="Self.std_infor" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="admins" EntityType="Self.admin" />
+    <EntitySet Name="StudentResults" EntityType="Self.StudentResult" />
+    <EntitySet Name="View_1" EntityType="Self.View_1" />
+    <EntitySet Name="View_2" EntityType="Self.View_2" />
+    <AssociationSet Name="FK_attendance_class" Association="Self.FK_attendance_class">
+      <End Role="class" EntitySet="classes" />
+      <End Role="attendance" EntitySet="attendances" />
+    </AssociationSet>
+    <AssociationSet Name="FK_attendance_class1" Association="Self.FK_attendance_class1">
+      <End Role="class" EntitySet="classes" />
+      <End Role="attendance" EntitySet="attendances" />
+    </AssociationSet>
+    <AssociationSet Name="FK_attendance_std_infor" Association="Self.FK_attendance_std_infor">
+      <End Role="std_infor" EntitySet="std_infor" />
+      <End Role="attendance" EntitySet="attendances" />
+    </AssociationSet>
+    <AssociationSet Name="FK_class_course" Association="Self.FK_class_course">
+      <End Role="course" EntitySet="courses" />
+      <End Role="class" EntitySet="classes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_class_exam_class" Association="Self.FK_class_exam_class">
+      <End Role="class" EntitySet="classes" />
+      <End Role="class_exam" EntitySet="class_exam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_class_faculty" Association="Self.FK_class_faculty">
+      <End Role="faculty" EntitySet="faculties" />
+      <End Role="class" EntitySet="classes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_std_class_class" Association="Self.FK_std_class_class">
+      <End Role="class" EntitySet="classes" />
+      <End Role="std_class" EntitySet="std_class" />
+    </AssociationSet>
+    <AssociationSet Name="FK_class_exam_exam" Association="Self.FK_class_exam_exam">
+      <End Role="exam" EntitySet="exams" />
+      <End Role="class_exam" EntitySet="class_exam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_exam_result_std_infor" Association="Self.FK_exam_result_std_infor">
+      <End Role="std_infor" EntitySet="std_infor" />
+      <End Role="exam_result" EntitySet="exam_result" />
+    </AssociationSet>
+    <AssociationSet Name="FK_faculty_facontact" Association="Self.FK_faculty_facontact">
+      <End Role="facontact" EntitySet="facontacts" />
+      <End Role="faculty" EntitySet="faculties" />
+    </AssociationSet>
+    <AssociationSet Name="FK_std_addr_std_infor" Association="Self.FK_std_addr_std_infor">
+      <End Role="std_infor" EntitySet="std_infor" />
+      <End Role="std_addr" EntitySet="std_addr" />
+    </AssociationSet>
+    <AssociationSet Name="FK_std_class_std_infor" Association="Self.FK_std_class_std_infor">
+      <End Role="std_infor" EntitySet="std_infor" />
+      <End Role="std_class" EntitySet="std_class" />
+    </AssociationSet>
+    <AssociationSet Name="FK_std_contact_std_infor" Association="Self.FK_std_contact_std_infor">
+      <End Role="std_infor" EntitySet="std_infor" />
+      <End Role="std_contact" EntitySet="std_contact" />
+    </AssociationSet>
+    <FunctionImport Name="showallstd" ReturnType="Collection(ProjectdbModel.showallstd_Result)" />
+  </EntityContainer>
+  <ComplexType Name="showallstd_Result">
+    <Property Type="String" Name="password" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="std_id" Nullable="false" />
+    <Property Type="String" Name="std_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="std_fname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="gender" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="std_dob" Nullable="false" />
+    <Property Type="Int32" Name="std_id1" Nullable="false" />
+    <Property Type="Int32" Name="std_id2" Nullable="false" />
+    <Property Type="String" Name="addr" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="addr_type" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="std_contact" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="std_fcontact" Nullable="false" MaxLength="50" />
+  </ComplexType>
+</Schema>

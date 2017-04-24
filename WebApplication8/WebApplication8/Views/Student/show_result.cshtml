@@ -1,0 +1,55 @@
+﻿@model IEnumerable<WebApplication8.Models.StudentResult>
+
+@{
+    ViewBag.Title = "show_result";
+}
+<div style="padding:0px 50px; margin-top:-50px;">
+
+    <h2>RESULT</h2>
+
+
+    <table class="table" style="padding:0px 450px 0px 200px">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+               NAME
+            </th>
+            <th>
+               MARKS OBTAINED
+            </th>
+            <th>
+              CLASS ID
+            </th>
+            <th>
+              COURSE NAME
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.std_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.std_name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.marks_obt)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.class_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.course_name)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+    </div>

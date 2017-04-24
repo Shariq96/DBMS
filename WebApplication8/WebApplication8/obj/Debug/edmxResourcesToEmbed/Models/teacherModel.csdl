@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjectdbModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="faculty">
+    <Key>
+      <PropertyRef Name="t_id" />
+    </Key>
+    <Property Name="t_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="t_fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="course_id" Type="Int32" Nullable="false" />
+    <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="t_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="faculty_contact">
+    <Key>
+      <PropertyRef Name="t_id" />
+    </Key>
+    <Property Name="t_id" Type="Int32" Nullable="false" />
+    <Property Name="t_contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="teacherEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="faculties" EntityType="Self.faculty" />
+    <EntitySet Name="faculty_contact" EntityType="Self.faculty_contact" />
+    <FunctionImport Name="add_tech">
+      <Parameter Name="t_name" Mode="In" Type="String" />
+      <Parameter Name="t_fname" Mode="In" Type="String" />
+      <Parameter Name="pass" Mode="In" Type="String" />
+      <Parameter Name="course_id" Mode="In" Type="Int32" />
+      <Parameter Name="t_contact" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

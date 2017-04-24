@@ -1,0 +1,62 @@
+﻿@model   WebApplication8.Models.adduserModel
+
+@{
+    ViewBag.Title = "add_result";
+}
+<div class="form-horizontal" style="padding:0px 450px 0px 100px">
+    <h2>add_result</h2>
+
+
+    <h4>adduserModel</h4>
+    <hr />
+
+    @using (Html.BeginForm("add_res", "adduser"))
+    {
+
+        <div> @Html.DropDownList("id", (SelectList)ViewBag.shrk)</div>
+        @:       <button>Fetch</button>
+    }
+    @{
+        if (IsPost)
+        {
+            using (Html.BeginForm("add_result", "adduser", FormMethod.Post))
+            {
+                <table>
+                    <tr>
+                        <td>Student ID</td>
+                        <td>Student Name</td>
+                        <td>Course ID</td>
+                        <td>ENTER MARKS</td>
+                    </tr>
+                    @{
+                        var c = (List<WebApplication8.Models.adduserModel>)ViewBag.std;
+                        for (int i = 1; i < c.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    @c[i].id
+                                    <input type="number" name="c[@i].id" value="@c[i].id" style="display:none;" />
+                                </td>
+                                <td>
+                                    @c[i].username
+                                    <input type="text" name="c[@i].username" value="@c[i].username" style="display:none;" />
+                                </td>
+                                <td>
+                                    @c[i].course_id
+                                    <input type="text" name="c[@i].course_id" value="@c[i].course_id" style="display:none;" />
+                                </td>
+                                <td><input type="number" name="c[@i].Mark" value="0" min="0" max="100" /></td>
+                            </tr>
+                        }
+                    }
+                </table>
+                <button>Update</button>
+
+                            }
+                        }
+    }
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

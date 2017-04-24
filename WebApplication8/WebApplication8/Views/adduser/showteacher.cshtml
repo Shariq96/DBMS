@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WebApplication8.Models.showt_Result1>
+
+@{
+    ViewBag.Title = "showteacher";
+}
+
+<h2 style="padding:0px 50px ; margin-top:-50px;">showteacher</h2>
+
+<div style="padding:0px 50px 0px 50px">
+    <table class="table">
+        <tr>
+            <th>
+               ID
+            </th>
+            <th>
+               NAME
+            </th>
+            <th>
+                FATHER NAME
+            </th>
+            <th>
+                CONTACT#
+            </th>
+            <th>
+                UPDATE
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.t_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.t_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.t_fname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.t_contact)
+                </td>
+                <td>
+                    @Html.ActionLink("Uptodate", "Gett", new { id = item.t_id }, new { @class = "button", style = "width:150px" })
+
+                </td>
+                
+
+            </tr>
+        }
+
+    </table>
+</div>

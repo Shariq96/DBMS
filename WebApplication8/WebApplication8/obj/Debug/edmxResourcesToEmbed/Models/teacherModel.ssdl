@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjectdbModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="faculty">
+    <Key>
+      <PropertyRef Name="t_id" />
+    </Key>
+    <Property Name="t_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="t_fname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="course_id" Type="int" Nullable="false" />
+    <Property Name="pass" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="t_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="faculty_contact">
+    <Key>
+      <PropertyRef Name="t_id" />
+    </Key>
+    <Property Name="t_id" Type="int" Nullable="false" />
+    <Property Name="t_contact" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Function Name="add_tech" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="t_name" Type="varchar" Mode="In" />
+    <Parameter Name="t_fname" Type="varchar" Mode="In" />
+    <Parameter Name="pass" Type="nvarchar" Mode="In" />
+    <Parameter Name="course_id" Type="int" Mode="In" />
+    <Parameter Name="t_contact" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="ProjectdbModel1StoreContainer">
+    <EntitySet Name="faculty" EntityType="Self.faculty" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="faculty_contact" EntityType="Self.faculty_contact" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

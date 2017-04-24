@@ -1,0 +1,111 @@
+﻿    @model WebApplication8.Models.adduserModel
+
+@{
+    ViewBag.Title = "get_std";
+}
+<div style="padding:0px 50px;"
+<h1>VIEW STUDENT</h1>
+
+
+    <h4>SEARCH STUDENT</h4>
+    <hr />
+
+    @using (Html.BeginForm())
+
+    {
+        <div class="form-group" style="padding:0px 450px 0px 0px">
+            @Html.LabelFor(model => model.id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.id)
+                @Html.ValidationMessageFor(model => model.id)
+            </div>
+        </div>
+
+        <div class="form-group" style="padding:10px 0px">
+            <div class="col-md-offset-2 col-md- 10">
+                <input type="submit" value="submit" class="btn btn-default" /> OR 
+                 @Html.ActionLink("View All", "new1", null, new { @class = "button", style = "width:150px" })
+   
+    OR @Html.ActionLink("Generate Report", "Report", null, new { @class = "button", style = "width:170px" })
+   </div>
+       
+            
+            
+                
+                </div>
+          
+
+    }
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.username)
+                
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.username)
+            </dd>
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.f_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.f_name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.dob)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.dob)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.gender)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.gender)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.addr1)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.addr1)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.addr)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.addr)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.contact)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.contact)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.fcontact)
+            
+                </dt>
+            <dd>
+                @Html.DisplayFor(model => model.fcontact)
+            </dd>
+
+
+        </dl>
+    </div>
+</div>
+
+    

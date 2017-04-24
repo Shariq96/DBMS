@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProjectdbModel3StoreContainer" CdmEntityContainer="ProjectdbEntities1">
+    <EntitySetMapping Name="classes">
+      <EntityTypeMapping TypeName="ProjectdbModel3.class">
+        <MappingFragment StoreEntitySet="class">
+          <ScalarProperty Name="class_id" ColumnName="class_id" />
+          <ScalarProperty Name="course_id" ColumnName="course_id" />
+          <ScalarProperty Name="t_id" ColumnName="t_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="class_exam">
+      <EntityTypeMapping TypeName="ProjectdbModel3.class_exam">
+        <MappingFragment StoreEntitySet="class_exam">
+          <ScalarProperty Name="class_id" ColumnName="class_id" />
+          <ScalarProperty Name="exam_id" ColumnName="exam_id" />
+          <ScalarProperty Name="exam_date" ColumnName="exam_date" />
+          <ScalarProperty Name="max_marks" ColumnName="max_marks" />
+          <ScalarProperty Name="grade_id" ColumnName="grade_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="exams">
+      <EntityTypeMapping TypeName="ProjectdbModel3.exam">
+        <MappingFragment StoreEntitySet="exam">
+          <ScalarProperty Name="exam_id" ColumnName="exam_id" />
+          <ScalarProperty Name="min_marks" ColumnName="min_marks" />
+          <ScalarProperty Name="max_marks" ColumnName="max_marks" />
+          <ScalarProperty Name="exam_title" ColumnName="exam_title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="exam_result">
+      <EntityTypeMapping TypeName="ProjectdbModel3.exam_result">
+        <MappingFragment StoreEntitySet="exam_result">
+          <ScalarProperty Name="class_id" ColumnName="class_id" />
+          <ScalarProperty Name="std_id" ColumnName="std_id" />
+          <ScalarProperty Name="exam_id" ColumnName="exam_id" />
+          <ScalarProperty Name="marks_obt" ColumnName="marks_obt" />
+          <ScalarProperty Name="grade_id" ColumnName="grade_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="grades">
+      <EntityTypeMapping TypeName="ProjectdbModel3.grade">
+        <MappingFragment StoreEntitySet="grade">
+          <ScalarProperty Name="grade_id" ColumnName="grade_id" />
+          <ScalarProperty Name="min_marks" ColumnName="min_marks" />
+          <ScalarProperty Name="max_marks" ColumnName="max_marks" />
+          <ScalarProperty Name="GPA" ColumnName="GPA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="std_class">
+      <EntityTypeMapping TypeName="ProjectdbModel3.std_class">
+        <MappingFragment StoreEntitySet="std_class">
+          <ScalarProperty Name="std_id" ColumnName="std_id" />
+          <ScalarProperty Name="class_id" ColumnName="class_id" />
+          <ScalarProperty Name="reg_date" ColumnName="reg_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="std_infor">
+      <EntityTypeMapping TypeName="ProjectdbModel3.std_infor">
+        <MappingFragment StoreEntitySet="std_infor">
+          <ScalarProperty Name="std_id" ColumnName="std_id" />
+          <ScalarProperty Name="std_name" ColumnName="std_name" />
+          <ScalarProperty Name="std_fname" ColumnName="std_fname" />
+          <ScalarProperty Name="std_dob" ColumnName="std_dob" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="showresut" FunctionName="ProjectdbModel3.Store.showresut">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProjectdbModel3.showresut_Result">
+          <ScalarProperty Name="std_id" ColumnName="std_id" />
+          <ScalarProperty Name="std_name" ColumnName="std_name" />
+          <ScalarProperty Name="class_id" ColumnName="class_id" />
+          <ScalarProperty Name="exam_title" ColumnName="exam_title" />
+          <ScalarProperty Name="marks_obt" ColumnName="marks_obt" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

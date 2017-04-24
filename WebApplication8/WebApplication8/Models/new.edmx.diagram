@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a187802a614d487f923c14874cdfdee6" Name="Diagram1">
+        <EntityTypeShape EntityType="ProjectdbModel2.attendance" Width="1.5" PointX="7.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectdbModel2.class" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectdbModel2.class_exam" Width="1.5" PointX="10.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectdbModel2.course" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectdbModel2.exam" Width="1.5" PointX="8.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectdbModel2.exam_result" Width="1.5" PointX="7.5" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectdbModel2.facontact" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectdbModel2.faculty" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectdbModel2.grade" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectdbModel2.std_addr" Width="1.5" PointX="7.5" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectdbModel2.std_class" Width="1.5" PointX="7.5" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectdbModel2.std_contact" Width="1.5" PointX="7.5" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectdbModel2.std_infor" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectdbModel2.sysdiagram" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectdbModel2.admin" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectdbModel2.login" Width="1.5" PointX="9.75" PointY="1.75" IsExpanded="true" />
+        <AssociationConnector Association="ProjectdbModel2.FK_attendance_class" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectdbModel2.FK_attendance_class1" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectdbModel2.FK_attendance_std_infor" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectdbModel2.FK_class_course" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectdbModel2.FK_class_exam_class" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectdbModel2.FK_class_faculty" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectdbModel2.FK_std_class_class" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectdbModel2.FK_class_exam_exam" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectdbModel2.FK_exam_result_std_infor" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectdbModel2.FK_faculty_facontact" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectdbModel2.FK_std_addr_std_infor" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectdbModel2.FK_std_class_std_infor" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectdbModel2.FK_std_contact_std_infor" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

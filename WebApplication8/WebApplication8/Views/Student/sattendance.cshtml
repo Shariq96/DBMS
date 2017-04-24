@@ -1,0 +1,53 @@
+﻿@model IEnumerable<WebApplication8.Models.StudentResult>
+
+@{
+    ViewBag.Title = "sattendance";
+}
+<div style="padding:0px 50px; margin-top:-50px;">
+    <h2>attendance</h2>
+
+
+    <table class="table" style="padding:0px 450px 0px 200px">
+        <tr>
+            <th>
+                NAME
+            </th>
+            <th>
+                CLASS ID
+            </th>
+            <th>
+                COURSE NAME
+            </th>
+            <th>
+                DATE
+            </th>
+            <th>
+                STATUS
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.std_name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.class_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.course_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.att_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.att_status)
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>

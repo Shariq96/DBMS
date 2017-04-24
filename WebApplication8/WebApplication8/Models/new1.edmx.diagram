@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1ea8669998bf45a29eb0ca21dc0cf43b" Name="Diagram1">
+        <EntityTypeShape EntityType="ProjectdbModel3.class" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectdbModel3.class_exam" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectdbModel3.exam" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectdbModel3.exam_result" Width="1.5" PointX="5.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectdbModel3.grade" Width="1.5" PointX="2.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectdbModel3.std_class" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectdbModel3.std_infor" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <AssociationConnector Association="ProjectdbModel3.FK_class_exam_class" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectdbModel3.FK_std_class_class" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectdbModel3.FK_class_exam_exam" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectdbModel3.FK_std_class_std_infor" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

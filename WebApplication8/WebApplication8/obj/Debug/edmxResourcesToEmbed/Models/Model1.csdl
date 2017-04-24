@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjectdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="std_addr">
+    <Key>
+      <PropertyRef Name="std_id" />
+    </Key>
+    <Property Name="std_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="addr_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="addr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="std_contact">
+    <Key>
+      <PropertyRef Name="std_id" />
+    </Key>
+    <Property Name="std_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="std_contact1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="std_fcontact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="std_infor">
+    <Key>
+      <PropertyRef Name="std_id" />
+    </Key>
+    <Property Name="std_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="std_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="std_fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="std_dob" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ProjectdbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="std_addr" EntityType="Self.std_addr" />
+    <EntitySet Name="std_contact" EntityType="Self.std_contact" />
+    <EntitySet Name="std_infor" EntityType="Self.std_infor" />
+    <FunctionImport Name="showallstd" ReturnType="Collection(ProjectdbModel.showallstd_Result)" />
+  </EntityContainer>
+  <ComplexType Name="showallstd_Result">
+    <Property Type="Int32" Name="std_id" Nullable="false" />
+    <Property Type="String" Name="std_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="std_fname" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="std_dob" Nullable="false" />
+    <Property Type="String" Name="password" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="gender" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="std_id1" Nullable="false" />
+    <Property Type="String" Name="addr_type" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="addr" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="std_id2" Nullable="false" />
+    <Property Type="String" Name="std_contact" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="std_fcontact" Nullable="false" MaxLength="50" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,452 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjectdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Projectdb.dbo.admin' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="username" />
+      <PropertyRef Name="pass" />
+    </Key>
+    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="pass" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="attendance">
+    <Key>
+      <PropertyRef Name="att_date" />
+      <PropertyRef Name="class_id" />
+      <PropertyRef Name="std_id" />
+    </Key>
+    <Property Name="att_date" Type="date" Nullable="false" />
+    <Property Name="class_id" Type="int" Nullable="false" />
+    <Property Name="std_id" Type="int" Nullable="false" />
+    <Property Name="att_status" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="class">
+    <Key>
+      <PropertyRef Name="class_id" />
+    </Key>
+    <Property Name="class_id" Type="int" Nullable="false" />
+    <Property Name="course_id" Type="int" Nullable="false" />
+    <Property Name="t_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="class_exam">
+    <Key>
+      <PropertyRef Name="class_id" />
+      <PropertyRef Name="exam_id" />
+    </Key>
+    <Property Name="class_id" Type="int" Nullable="false" />
+    <Property Name="exam_id" Type="int" Nullable="false" />
+    <Property Name="exam_date" Type="date" Nullable="false" />
+    <Property Name="max_marks" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="grade_id" Type="int" />
+  </EntityType>
+  <EntityType Name="course">
+    <Key>
+      <PropertyRef Name="course_id" />
+    </Key>
+    <Property Name="course_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="course_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="course_crh" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="exam">
+    <Key>
+      <PropertyRef Name="exam_id" />
+    </Key>
+    <Property Name="exam_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="min_marks" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="max_marks" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="exam_title" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="exam_result">
+    <Key>
+      <PropertyRef Name="class_id" />
+      <PropertyRef Name="std_id" />
+      <PropertyRef Name="exam_id" />
+    </Key>
+    <Property Name="class_id" Type="int" Nullable="false" />
+    <Property Name="std_id" Type="int" Nullable="false" />
+    <Property Name="exam_id" Type="int" Nullable="false" />
+    <Property Name="marks_obt" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="grade_id" Type="int" />
+  </EntityType>
+  <EntityType Name="facontact">
+    <Key>
+      <PropertyRef Name="t_id" />
+    </Key>
+    <Property Name="t_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="t_contact" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="faculty">
+    <Key>
+      <PropertyRef Name="t_id" />
+    </Key>
+    <Property Name="t_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="t_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="t_fname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="pass" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="grade">
+    <Key>
+      <PropertyRef Name="grade_id" />
+    </Key>
+    <Property Name="grade_id" Type="int" Nullable="false" />
+    <Property Name="min_marks" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="max_marks" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="GPA" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="std_addr">
+    <Key>
+      <PropertyRef Name="std_id" />
+    </Key>
+    <Property Name="std_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="addr_type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="addr" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="std_class">
+    <Key>
+      <PropertyRef Name="std_id" />
+      <PropertyRef Name="class_id" />
+    </Key>
+    <Property Name="std_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="class_id" Type="int" Nullable="false" />
+    <Property Name="reg_date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="std_contact">
+    <Key>
+      <PropertyRef Name="std_id" />
+    </Key>
+    <Property Name="std_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="std_contact" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="std_fcontact" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="std_infor">
+    <Key>
+      <PropertyRef Name="std_id" />
+    </Key>
+    <Property Name="std_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="std_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="std_fname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="std_dob" Type="date" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="gender" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Projectdb.dbo.StudentResults' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="StudentResults">
+    <Key>
+      <PropertyRef Name="std_name" />
+      <PropertyRef Name="std_id" />
+      <PropertyRef Name="exam_id" />
+      <PropertyRef Name="class_id" />
+      <PropertyRef Name="marks_obt" />
+      <PropertyRef Name="course_name" />
+      <PropertyRef Name="reg_date" />
+      <PropertyRef Name="att_date" />
+      <PropertyRef Name="att_status" />
+    </Key>
+    <Property Name="std_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="std_id" Type="int" Nullable="false" />
+    <Property Name="exam_id" Type="int" Nullable="false" />
+    <Property Name="class_id" Type="int" Nullable="false" />
+    <Property Name="marks_obt" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="course_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="reg_date" Type="date" Nullable="false" />
+    <Property Name="att_date" Type="date" Nullable="false" />
+    <Property Name="att_status" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Projectdb.dbo.View_1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_1">
+    <Key>
+      <PropertyRef Name="course_name" />
+      <PropertyRef Name="max_marks" />
+    </Key>
+    <Property Name="course_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="max_marks" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Projectdb.dbo.View_2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_2">
+    <Key>
+      <PropertyRef Name="std_id" />
+      <PropertyRef Name="std_name" />
+      <PropertyRef Name="class_id" />
+      <PropertyRef Name="att_date" />
+      <PropertyRef Name="att_status" />
+    </Key>
+    <Property Name="std_id" Type="int" Nullable="false" />
+    <Property Name="std_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="class_id" Type="int" Nullable="false" />
+    <Property Name="att_date" Type="date" Nullable="false" />
+    <Property Name="att_status" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_attendance_class">
+    <End Role="class" Type="Self.class" Multiplicity="1" />
+    <End Role="attendance" Type="Self.attendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="class">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="attendance">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_attendance_class1">
+    <End Role="class" Type="Self.class" Multiplicity="1" />
+    <End Role="attendance" Type="Self.attendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="class">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="attendance">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_attendance_std_infor">
+    <End Role="std_infor" Type="Self.std_infor" Multiplicity="1" />
+    <End Role="attendance" Type="Self.attendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="std_infor">
+        <PropertyRef Name="std_id" />
+      </Principal>
+      <Dependent Role="attendance">
+        <PropertyRef Name="std_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_class_course">
+    <End Role="course" Type="Self.course" Multiplicity="1" />
+    <End Role="class" Type="Self.class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course">
+        <PropertyRef Name="course_id" />
+      </Principal>
+      <Dependent Role="class">
+        <PropertyRef Name="course_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_class_exam_class">
+    <End Role="class" Type="Self.class" Multiplicity="1" />
+    <End Role="class_exam" Type="Self.class_exam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="class">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="class_exam">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_class_exam_exam">
+    <End Role="exam" Type="Self.exam" Multiplicity="1" />
+    <End Role="class_exam" Type="Self.class_exam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="exam">
+        <PropertyRef Name="exam_id" />
+      </Principal>
+      <Dependent Role="class_exam">
+        <PropertyRef Name="exam_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_class_faculty">
+    <End Role="faculty" Type="Self.faculty" Multiplicity="1" />
+    <End Role="class" Type="Self.class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="faculty">
+        <PropertyRef Name="t_id" />
+      </Principal>
+      <Dependent Role="class">
+        <PropertyRef Name="t_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_exam_result_std_infor">
+    <End Role="std_infor" Type="Self.std_infor" Multiplicity="1" />
+    <End Role="exam_result" Type="Self.exam_result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="std_infor">
+        <PropertyRef Name="std_id" />
+      </Principal>
+      <Dependent Role="exam_result">
+        <PropertyRef Name="std_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_faculty_facontact">
+    <End Role="facontact" Type="Self.facontact" Multiplicity="1" />
+    <End Role="faculty" Type="Self.faculty" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="facontact">
+        <PropertyRef Name="t_id" />
+      </Principal>
+      <Dependent Role="faculty">
+        <PropertyRef Name="t_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_std_addr_std_infor">
+    <End Role="std_infor" Type="Self.std_infor" Multiplicity="1" />
+    <End Role="std_addr" Type="Self.std_addr" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="std_infor">
+        <PropertyRef Name="std_id" />
+      </Principal>
+      <Dependent Role="std_addr">
+        <PropertyRef Name="std_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_std_class_class">
+    <End Role="class" Type="Self.class" Multiplicity="1" />
+    <End Role="std_class" Type="Self.std_class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="class">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="std_class">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_std_class_std_infor">
+    <End Role="std_infor" Type="Self.std_infor" Multiplicity="1" />
+    <End Role="std_class" Type="Self.std_class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="std_infor">
+        <PropertyRef Name="std_id" />
+      </Principal>
+      <Dependent Role="std_class">
+        <PropertyRef Name="std_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_std_contact_std_infor">
+    <End Role="std_infor" Type="Self.std_infor" Multiplicity="1" />
+    <End Role="std_contact" Type="Self.std_contact" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="std_infor">
+        <PropertyRef Name="std_id" />
+      </Principal>
+      <Dependent Role="std_contact">
+        <PropertyRef Name="std_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="showallstd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="ProjectdbModelStoreContainer">
+    <EntitySet Name="attendance" EntityType="Self.attendance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="class" EntityType="Self.class" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="class_exam" EntityType="Self.class_exam" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="course" EntityType="Self.course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="exam" EntityType="Self.exam" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="exam_result" EntityType="Self.exam_result" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="facontact" EntityType="Self.facontact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="faculty" EntityType="Self.faculty" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="grade" EntityType="Self.grade" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="std_addr" EntityType="Self.std_addr" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="std_class" EntityType="Self.std_class" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="std_contact" EntityType="Self.std_contact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="std_infor" EntityType="Self.std_infor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="admin" EntityType="Self.admin" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [admin].[username] AS [username], 
+    [admin].[pass] AS [pass]
+    FROM [dbo].[admin] AS [admin]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="StudentResults" EntityType="Self.StudentResults" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [StudentResults].[std_name] AS [std_name], 
+    [StudentResults].[std_id] AS [std_id], 
+    [StudentResults].[exam_id] AS [exam_id], 
+    [StudentResults].[class_id] AS [class_id], 
+    [StudentResults].[marks_obt] AS [marks_obt], 
+    [StudentResults].[course_name] AS [course_name], 
+    [StudentResults].[reg_date] AS [reg_date], 
+    [StudentResults].[att_date] AS [att_date], 
+    [StudentResults].[att_status] AS [att_status]
+    FROM [dbo].[StudentResults] AS [StudentResults]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_1" EntityType="Self.View_1" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_1].[course_name] AS [course_name], 
+    [View_1].[max_marks] AS [max_marks]
+    FROM [dbo].[View_1] AS [View_1]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_2" EntityType="Self.View_2" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_2].[std_id] AS [std_id], 
+    [View_2].[std_name] AS [std_name], 
+    [View_2].[class_id] AS [class_id], 
+    [View_2].[att_date] AS [att_date], 
+    [View_2].[att_status] AS [att_status]
+    FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_attendance_class" Association="Self.FK_attendance_class">
+      <End Role="class" EntitySet="class" />
+      <End Role="attendance" EntitySet="attendance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_attendance_class1" Association="Self.FK_attendance_class1">
+      <End Role="class" EntitySet="class" />
+      <End Role="attendance" EntitySet="attendance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_attendance_std_infor" Association="Self.FK_attendance_std_infor">
+      <End Role="std_infor" EntitySet="std_infor" />
+      <End Role="attendance" EntitySet="attendance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_class_course" Association="Self.FK_class_course">
+      <End Role="course" EntitySet="course" />
+      <End Role="class" EntitySet="class" />
+    </AssociationSet>
+    <AssociationSet Name="FK_class_exam_class" Association="Self.FK_class_exam_class">
+      <End Role="class" EntitySet="class" />
+      <End Role="class_exam" EntitySet="class_exam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_class_exam_exam" Association="Self.FK_class_exam_exam">
+      <End Role="exam" EntitySet="exam" />
+      <End Role="class_exam" EntitySet="class_exam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_class_faculty" Association="Self.FK_class_faculty">
+      <End Role="faculty" EntitySet="faculty" />
+      <End Role="class" EntitySet="class" />
+    </AssociationSet>
+    <AssociationSet Name="FK_exam_result_std_infor" Association="Self.FK_exam_result_std_infor">
+      <End Role="std_infor" EntitySet="std_infor" />
+      <End Role="exam_result" EntitySet="exam_result" />
+    </AssociationSet>
+    <AssociationSet Name="FK_faculty_facontact" Association="Self.FK_faculty_facontact">
+      <End Role="facontact" EntitySet="facontact" />
+      <End Role="faculty" EntitySet="faculty" />
+    </AssociationSet>
+    <AssociationSet Name="FK_std_addr_std_infor" Association="Self.FK_std_addr_std_infor">
+      <End Role="std_infor" EntitySet="std_infor" />
+      <End Role="std_addr" EntitySet="std_addr" />
+    </AssociationSet>
+    <AssociationSet Name="FK_std_class_class" Association="Self.FK_std_class_class">
+      <End Role="class" EntitySet="class" />
+      <End Role="std_class" EntitySet="std_class" />
+    </AssociationSet>
+    <AssociationSet Name="FK_std_class_std_infor" Association="Self.FK_std_class_std_infor">
+      <End Role="std_infor" EntitySet="std_infor" />
+      <End Role="std_class" EntitySet="std_class" />
+    </AssociationSet>
+    <AssociationSet Name="FK_std_contact_std_infor" Association="Self.FK_std_contact_std_infor">
+      <End Role="std_infor" EntitySet="std_infor" />
+      <End Role="std_contact" EntitySet="std_contact" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

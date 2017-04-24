@@ -1,0 +1,42 @@
+﻿@model WebApplication8.Models.TeacherrModel
+
+@{
+    ViewBag.Title = "stdview";
+}
+
+<h2 style="padding:0px 450px 0px 200px; margin-top:-57px;">BIO</h2>
+
+
+<div class="form-horizontal" style="padding:0px 450px 0px 200px">
+    <h4>TeacherrModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.f_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.f_name)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contact)
+        </dd>
+
+
+    </dl>
+</div>
+

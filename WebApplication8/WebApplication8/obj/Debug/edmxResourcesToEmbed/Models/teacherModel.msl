@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProjectdbModel1StoreContainer" CdmEntityContainer="teacherEntities">
+    <EntitySetMapping Name="faculties">
+      <EntityTypeMapping TypeName="ProjectdbModel1.faculty">
+        <MappingFragment StoreEntitySet="faculty">
+          <ScalarProperty Name="t_name" ColumnName="t_name" />
+          <ScalarProperty Name="t_fname" ColumnName="t_fname" />
+          <ScalarProperty Name="course_id" ColumnName="course_id" />
+          <ScalarProperty Name="pass" ColumnName="pass" />
+          <ScalarProperty Name="t_id" ColumnName="t_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="faculty_contact">
+      <EntityTypeMapping TypeName="ProjectdbModel1.faculty_contact">
+        <MappingFragment StoreEntitySet="faculty_contact">
+          <ScalarProperty Name="t_id" ColumnName="t_id" />
+          <ScalarProperty Name="t_contact" ColumnName="t_contact" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="add_tech" FunctionName="ProjectdbModel1.Store.add_tech" />
+  </EntityContainerMapping>
+</Mapping>
